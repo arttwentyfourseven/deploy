@@ -1,7 +1,7 @@
 services:
   dashboard:
     container_name: dashboard
-    image: hummingbot/dashboard:dydx
+    image: arttwentyfourseven/dashboard:dydx
     ports:
       - "8501:8501"
     environment:
@@ -17,7 +17,7 @@ services:
         - emqx-bridge
   hummingbot-api:
     container_name: hummingbot-api
-    image: hummingbot/hummingbot-api:dydx
+    image: arttwentyfourseven/hummingbot-api:dydx
     ports:
       - "8000:8000"
     volumes:
@@ -80,7 +80,7 @@ networks:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
     networks:
       - emqx-bridge
     healthcheck:
