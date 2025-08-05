@@ -15,12 +15,12 @@ with c1:
     connector = st.selectbox("Exchange",
                              ["binance_perpetual", "binance", "gate_io", "gate_io_perpetual", "kucoin", "ascend_ex", "btc_markets"],
                              index=0)
-    trading_pair = st.text_input("Trading Pair", value="BTC-USDT")
+    trading_pair = st.text_input("Trading Pair", value="BTC-AUD")
 with c2:
     interval = st.selectbox("Interval", options=["1m", "3m", "5m", "15m", "1h", "4h", "1d", "1s"])
 with c3:
-    start_date = st.date_input("Start Date", value=datetime(2023, 1, 1))
-    end_date = st.date_input("End Date", value=datetime(2023, 1, 2))
+    start_date = st.date_input("Start Date", value=datetime(2025, 1, 1))
+    end_date = st.date_input("End Date", value=datetime(2025, 1, 2))
 with c4:
     get_data_button = st.button("Get Candles!")
 
@@ -39,7 +39,10 @@ if get_data_button:
         end_time=int(end_datetime.timestamp())
     )
 
-    candles_df = pd.DataFrame(candles)
+    candles_df = pd.DataFrame(candles, index=[0])
+
+    print("Columns in candles_df:", candles_df.columns)
+
     candles_df.index = pd.to_datetime(candles_df["timestamp"], unit='s')
 
     # Plotting the candlestick chart
